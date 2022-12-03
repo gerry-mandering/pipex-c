@@ -6,7 +6,7 @@
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 14:33:59 by minseok2          #+#    #+#             */
-/*   Updated: 2022/11/10 12:15:41 by minseok2         ###   ########.fr       */
+/*   Updated: 2022/12/03 15:00:21 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	**allocate_splited_str(char const *s, char c)
 
 	word_count = 0;
 	if (s == NULL)
-		ft_exit("Error", STDERR_FILENO, EXIT_FAILURE);
+		ft_exit("Error: ft_split", EXIT_FAILURE);
 	while (*s && *s == c)
 		s++;
 	while (*s)

@@ -6,7 +6,7 @@
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 21:18:05 by minseok2          #+#    #+#             */
-/*   Updated: 2022/11/13 21:20:16 by minseok2         ###   ########.fr       */
+/*   Updated: 2022/12/03 15:01:42 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ int	ft_close(int fildes)
 
 	flag = close(fildes);
 	if (flag == -1)
-		ft_exit("file close failure", STDERR_FILENO, EXIT_FAILURE);
+		ft_exit("Error: file close failure", EXIT_FAILURE);
 	return (flag);
 }

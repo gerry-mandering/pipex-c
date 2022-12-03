@@ -6,7 +6,7 @@
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 09:16:20 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/02 14:59:06 by minseok2         ###   ########.fr       */
+/*   Updated: 2022/12/03 16:18:33 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <stdio.h>
+# include <sys/wait.h>
 # include "../library/libft/includes/libft.h"
 # include "../library/ft_printf/includes/ft_printf.h"
 
@@ -31,6 +33,7 @@ typedef struct s_cmdline
 {
 	char	*infile;
 	char	*outfile;
+	int		infile_fd;
 	int		outfile_fd;
 	t_cmd	cmd1;
 	t_cmd	cmd2;
