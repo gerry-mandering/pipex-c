@@ -6,7 +6,7 @@
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 09:16:20 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/03 16:18:33 by minseok2         ###   ########.fr       */
+/*   Updated: 2022/12/04 17:04:53 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@
 # include "../library/libft/includes/libft.h"
 # include "../library/ft_printf/includes/ft_printf.h"
 
-# define PARSE			0
+# define READ_END			0
+# define WRITE_END			1
+# define COMMAND_NOT_FOUND	127
 
 typedef struct s_cmd
 {
@@ -33,8 +35,6 @@ typedef struct s_cmdline
 {
 	char	*infile;
 	char	*outfile;
-	int		infile_fd;
-	int		outfile_fd;
 	t_cmd	cmd1;
 	t_cmd	cmd2;
 	char	**envp;

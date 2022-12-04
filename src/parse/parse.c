@@ -6,7 +6,7 @@
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 09:47:01 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/03 20:12:48 by minseok2         ###   ########.fr       */
+/*   Updated: 2022/12/04 16:20:43 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@ static void	parse_file(t_cmdline *cmdline, char **argv)
 {
 	cmdline->infile = argv[1];
 	cmdline->outfile = argv[4];
-	cmdline->infile_fd = ft_open(cmdline->infile, O_RDONLY);
-	cmdline->outfile_fd = open(cmdline->outfile, \
-			O_WRONLY | O_CREAT | O_TRUNC, 0644);
 }
 
 static void	parse_envp(t_cmdline *cmdline, char **envp)

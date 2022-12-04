@@ -6,7 +6,7 @@
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 21:16:04 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/03 20:19:04 by minseok2         ###   ########.fr       */
+/*   Updated: 2022/12/04 16:20:04 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ int	ft_open(const char *path, int oflag)
 
 	fd = open(path, oflag);
 	if (fd == -1)
-		ft_exit("Error: No such file or directory", EXIT_FAILURE);
+		ft_exit(NULL, EXIT_FAILURE);
 	return (fd);
 }
