@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_bonus.c                                      :+:      :+:    :+:   */
+/*   allocate_fd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/07 09:50:59 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/07 09:52:24 by minseok2         ###   ########.fr       */
+/*   Created: 2022/12/06 17:43:58 by minseok2          #+#    #+#             */
+/*   Updated: 2022/12/06 17:47:17 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/pipex_bonus.h"
+#include "../../../includes/pipex_bonus.h"
 
-int	wexitstatus(int status)
+void	allocate_fd(t_data *data)
 {
-	int	exit_status;
+	int	i;
 
-	exit_status = ((unsigned)status >> 8) & 0xff;
-	return (exit_status);
+	data->fd = (int **)ft_calloc(data->total_cmd, sizeof(int *));
+	i = 0;
+	while (i < data->total_cmd)
+		data->fd[i++] = (int *)ft_calloc(2, sizeof(int));
 }

@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_bonus.c                                      :+:      :+:    :+:   */
+/*   allocate_pid_arr.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/07 09:50:59 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/07 09:52:24 by minseok2         ###   ########.fr       */
+/*   Created: 2022/12/06 18:13:16 by minseok2          #+#    #+#             */
+/*   Updated: 2022/12/06 18:20:07 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/pipex_bonus.h"
+#include "../../../includes/pipex_bonus.h"
 
-int	wexitstatus(int status)
+void	allocate_pid_arr(t_data *data)
 {
-	int	exit_status;
-
-	exit_status = ((unsigned)status >> 8) & 0xff;
-	return (exit_status);
+	data->pid_arr = (pid_t *)ft_calloc(data->total_cmd, sizeof(pid_t));
 }

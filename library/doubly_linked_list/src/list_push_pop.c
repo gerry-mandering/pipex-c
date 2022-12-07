@@ -6,17 +6,18 @@
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:46:14 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/05 09:55:00 by minseok2         ###   ########.fr       */
+/*   Updated: 2022/12/05 19:17:24 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/doubly_linked_list.h"
 
-t_node	*new_node(int pid, char *cmd, char **cmd_vector)
+t_node	*new_node(int index, int pid, char *cmd, char **cmd_vector)
 {
 	t_node	*new_node;
 
 	new_node = (t_node *)ft_calloc(1, sizeof(t_node));
+	new_node->index = index;
 	new_node->pid = pid;
 	new_node->cmd = cmd;
 	new_node->cmd_vector = cmd_vector;

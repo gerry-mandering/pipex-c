@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_bonus.c                                      :+:      :+:    :+:   */
+/*   set_pipe.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/07 09:50:59 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/07 09:52:24 by minseok2         ###   ########.fr       */
+/*   Created: 2022/12/06 18:23:11 by minseok2          #+#    #+#             */
+/*   Updated: 2022/12/06 18:27:15 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/pipex_bonus.h"
+#include "../../../includes/pipex_bonus.h"
 
-int	wexitstatus(int status)
+void	set_pipe(t_data *data)
 {
-	int	exit_status;
+	static int	count;
+	int			ret;
 
-	exit_status = ((unsigned)status >> 8) & 0xff;
-	return (exit_status);
+	ret = pipe(data->fd[count]);
+	if (ret == -1)
+	{
+		perror("bash");
+		exit(EXIT_FAILURE);
+	}
+	count++;
+	data->status = DO_FORK;
 }

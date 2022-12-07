@@ -6,7 +6,7 @@
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:38:14 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/05 09:57:16 by minseok2         ###   ########.fr       */
+/*   Updated: 2022/12/05 19:17:33 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 typedef struct s_node
 {
+	int				index;
 	int				pid;
 	char			*cmd;
 	char			**cmd_vector;
@@ -36,7 +37,7 @@ int		is_empty(t_list *list);
 void	init_list(t_list *list);
 
 // list_push_pop.c
-t_node	*new_node(int pid, char *cmd, char **cmd_vector);
+t_node	*new_node(int index, int pid, char *cmd, char **cmd_vector);
 void	push_head_side(t_list *list, t_node *new_node);
 void	push_tail_side(t_list *list, t_node *new_node);
 t_node	*pop_head_side(t_list *list);
