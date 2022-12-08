@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   do_fork.c                                          :+:      :+:    :+:   */
+/*   do_fork_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 18:29:57 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/07 09:26:09 by minseok2         ###   ########.fr       */
+/*   Updated: 2022/12/08 12:35:54 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	do_fork(t_data *data)
 	else if (ret)
 	{
 		if (count != 0)
-			close_pipe(data->fd, count - 1);
+			close_pipe(data->pipe, count - 1);
 		data->pid_arr[count] = ret;
 		count++;
 		data->status = set_next_status(count, data->total_cmd);

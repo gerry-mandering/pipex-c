@@ -6,7 +6,7 @@
 #    By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/03 14:54:09 by minseok2          #+#    #+#              #
-#    Updated: 2022/12/05 14:20:26 by minseok2         ###   ########.fr        #
+#    Updated: 2022/12/08 12:52:30 by minseok2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,9 +39,15 @@ BONUS_HEADER_DIR = includes
 
 BONUS_SRCS_DIR = src/bonus
 BONUS_SRCS = pipex_bonus.c \
-			 parse_bonus.c \
-			 execute_bonus.c \
-			 utils_bonus.c
+			 utils_bonus.c \
+			 logic/parse_bonus.c \
+			 logic/parse_utils_bonus.c \
+			 logic/allocate_fd_bonus.c \
+			 logic/allocate_pid_arr_bonus.c \
+			 logic/set_pipe_bonus.c \
+			 logic/do_fork_bonus.c \
+			 logic/parent_waiting_bonus.c \
+			 logic/child_execute_bonus.c
 
 BONUS_OBJS_DIR = objs/bonus
 BONUS_OBJS = $(BONUS_SRCS:%.c=$(BONUS_OBJS_DIR)/%.o)
@@ -81,7 +87,7 @@ $(OBJS): $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@ -I$(HEADER_DIR)
 
 $(BONUS_OBJS): $(BONUS_OBJS_DIR)/%.o: $(BONUS_SRCS_DIR)/%.c
-	mkdir -p $(BONUS_OBJS_DIR)
+	mkdir -p $(BONUS_OBJS_DIR)/{logic,}
 	$(CC) $(CFLAGS) -c $< -o $@ -I$(BONUS_HEADER_DIR)
 
 .PHONY : all bonus clean fclean re

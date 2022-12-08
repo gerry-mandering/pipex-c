@@ -6,7 +6,7 @@
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:32:40 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/06 17:41:46 by minseok2         ###   ########.fr       */
+/*   Updated: 2022/12/08 12:34:58 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,5 @@ void	parse(t_data *data)
 	data->total_cmd = count_total_cmd(&data->heredoc_flag, &data->argset);
 	data->cmd_arr = parse_cmd_arr(&data->total_cmd, &data->heredoc_flag, \
 									&data->argset);
-	data->status = ALLOCATE_FD;
+	data->status = ALLOCATE_PIPE;
 }

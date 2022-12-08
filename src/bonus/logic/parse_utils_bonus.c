@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_cmd_arr.c                                    :+:      :+:    :+:   */
+/*   parse_utils_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 17:40:58 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/06 18:17:41 by minseok2         ###   ########.fr       */
+/*   Updated: 2022/12/08 19:13:40 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ static char	*get_cmd_path(char *cmd, char **path_vector)
 	char	*path;
 	int		i;
 
+	if (ft_strchr(cmd, '/') && access(cmd, F_OK | X_OK) == 0)
+		return (cmd);
 	i = 0;
 	while (path_vector && path_vector[i])
 	{
@@ -58,8 +60,6 @@ static char	*get_cmd_path(char *cmd, char **path_vector)
 			return (cmd_path);
 		i++;
 	}
-	if (ft_strncmp(cmd, "./", 2) == 0 && access(cmd, F_OK | X_OK) == 0)
-		return (cmd);
 	return (INVALID_PATH);
 }
 

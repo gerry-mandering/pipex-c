@@ -6,7 +6,7 @@
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:26:45 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/07 17:07:43 by minseok2         ###   ########.fr       */
+/*   Updated: 2022/12/08 15:14:34 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,44 @@ int	main(int ac, char **av, char **envp)
 	while (1)
 	{
 		if (data.status == PARSE)
+		{
+			//printf("1\n");
 			parse(&data);
-		else if (data.status == ALLOCATE_FD)
-			allocate_fd(&data);
+		}
+		else if (data.status == ALLOCATE_PIPE)
+		{
+			//printf("2\n");
+			allocate_pipe(&data);
+		}
 		else if (data.status == ALLOCATE_PID_ARR)
+		{
+			//printf("3\n");
 			allocate_pid_arr(&data);
+		}
 		else if (data.status == SET_PIPE)
+		{
+			//printf("4\n");
 			set_pipe(&data);
+		}
 		else if (data.status == DO_FORK)
+		{
+			//printf("5\n");
 			do_fork(&data);
+		}
 		else if (data.status == PARENT_WAITING)
+		{
+			//printf("6\n");
 			parent_waiting(&data);
+		}
 		else if (data.status == CHILD_EXECUTE)
+		{
+			//printf("7\nI'm %d\n", data.cur_process_index);
 			child_execute(&data);
+		}
 		else if (data.status == EXIT)
+		{
+			//printf("8\n");
 			exit(data.exit_status);
+		}
 	}
 }

@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_pipe.c                                         :+:      :+:    :+:   */
+/*   parent_waiting_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 18:23:11 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/06 18:27:15 by minseok2         ###   ########.fr       */
+/*   Created: 2022/12/07 09:30:07 by minseok2          #+#    #+#             */
+/*   Updated: 2022/12/07 09:50:28 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/pipex_bonus.h"
 
-void	set_pipe(t_data *data)
+void	parent_waiting(t_data *data)
 {
-	static int	count;
-	int			ret;
+	const int	last_child = (data->total_cmd - 1);
+	int			process_index;
+	int			lst_status;
 
-	ret = pipe(data->fd[count]);
-	if (ret == -1)
+	process_index = 0;
+	while (process_index < data->total_cmd)
 	{
-		perror("bash");
-		exit(EXIT_FAILURE);
+		if (process_index == last_child)
+			waitpid(data->pid_arr[process_index], &lst_status, 0);
+		else
+			waitpid(data->pid_arr[process_index], NULL, 0);
+		process_index++;
 	}
-	count++;
-	data->status = DO_FORK;
+	data->exit_status = wexitstatus(lst_status);
+	data->status = EXIT;
 }

@@ -6,7 +6,7 @@
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 13:41:18 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/07 09:52:57 by minseok2         ###   ########.fr       */
+/*   Updated: 2022/12/08 12:46:52 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 //define current status
 # define PARSE				0
-# define ALLOCATE_FD		1
+# define ALLOCATE_PIPE		1
 # define ALLOCATE_PID_ARR	2
 # define SET_PIPE			3
 # define DO_FORK			4
@@ -70,7 +70,7 @@ typedef struct s_data
 	int					heredoc_flag;
 	int					exit_status;
 	int					total_cmd;
-	int					**fd;
+	int					**pipe;
 	pid_t				*pid_arr;
 	struct s_argset		argset;
 	struct s_filename	filename;
@@ -81,11 +81,12 @@ typedef struct s_data
 void	parse(t_data *data);
 t_cmd	*parse_cmd_arr(int *total_cmd, int *heredoc_flag, \
 						t_argset *argset);
-void	allocate_fd(t_data *data);
+void	allocate_pipe(t_data *data);
 void	allocate_pid_arr(t_data *data);
 void	set_pipe(t_data *data);
 void	do_fork(t_data *data);
 void	parent_waiting(t_data *data);
+void	child_execute(t_data *data);
 
 //utils
 int		wexitstatus(int status);

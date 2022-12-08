@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   allocate_fd.c                                      :+:      :+:    :+:   */
+/*   allocate_fd_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 17:43:58 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/06 17:47:17 by minseok2         ###   ########.fr       */
+/*   Updated: 2022/12/08 12:58:19 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/pipex_bonus.h"
 
-void	allocate_fd(t_data *data)
+void	allocate_pipe(t_data *data)
 {
 	int	i;
 
-	data->fd = (int **)ft_calloc(data->total_cmd, sizeof(int *));
+	data->pipe = (int **)ft_calloc(data->total_cmd, sizeof(int *));
 	i = 0;
 	while (i < data->total_cmd)
-		data->fd[i++] = (int *)ft_calloc(2, sizeof(int));
+		data->pipe[i++] = (int *)ft_calloc(2, sizeof(int));
+	data->status = ALLOCATE_PID_ARR;
 }
