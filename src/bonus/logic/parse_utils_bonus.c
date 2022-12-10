@@ -6,13 +6,13 @@
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 17:40:58 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/08 19:13:40 by minseok2         ###   ########.fr       */
+/*   Updated: 2022/12/10 13:30:45 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/pipex_bonus.h"
 
-static char	**get_path_vector(char **envp)
+char	**get_path_vector(char **envp)
 {
 	char	**path_vector;
 	int		i;
@@ -42,7 +42,7 @@ static int	get_cmd_start_index(int *heredoc_flag)
 	return (cmd_start_index);
 }
 
-static char	*get_cmd_path(char *cmd, char **path_vector)
+char	*get_cmd_path(char *cmd, char **path_vector)
 {
 	char	*cmd_path;
 	char	*path;
@@ -58,9 +58,23 @@ static char	*get_cmd_path(char *cmd, char **path_vector)
 		ft_free(path);
 		if (access(cmd_path, F_OK | X_OK) == 0)
 			return (cmd_path);
+		free(cmd_path);
 		i++;
 	}
 	return (INVALID_PATH);
+}
+
+static char	*set_err_msg(char *cmd, char *cmd_path)
+{
+	char	*err_msg;
+
+	if (cmd_path != INVALID_PATH)
+		err_msg = NULL;
+	else if (ft_strchr(cmd, '/'))
+		err_msg = ft_strdup("bash: No such file or directory");
+	else
+		err_msg = ft_strdup("bash: Command not found");
+	return (err_msg);
 }
 
 t_cmd	*parse_cmd_arr(int *total_cmd, int *heredoc_flag, \
@@ -80,6 +94,7 @@ t_cmd	*parse_cmd_arr(int *total_cmd, int *heredoc_flag, \
 		cmd_arr[i].cmd_vector = ft_split(argset->av[cmd_start_index + i], ' ');
 		cmd_arr[i].cmd = cmd_arr[i].cmd_vector[0];
 		cmd_arr[i].cmd_path = get_cmd_path(cmd_arr[i].cmd, path_vector);
+		cmd_arr[i].err_msg = set_err_msg(cmd_arr[i].cmd, cmd_arr[i].cmd_path);
 		i++;
 	}
 	return (cmd_arr);

@@ -6,7 +6,7 @@
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 18:29:57 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/08 12:35:54 by minseok2         ###   ########.fr       */
+/*   Updated: 2022/12/10 17:54:05 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,11 @@ static int	set_next_status(int count, int total_cmd)
 
 void	do_fork(t_data *data)
 {
-	static int	count;
+	static int	count2;
 	pid_t		ret;
 
 	ret = fork();
+	printf("ret = %d\n", ret);
 	if (ret == -1)
 	{
 		perror("bash");
@@ -41,15 +42,19 @@ void	do_fork(t_data *data)
 	}
 	else if (ret)
 	{
-		if (count != 0)
-			close_pipe(data->pipe, count - 1);
-		data->pid_arr[count] = ret;
-		count++;
-		data->status = set_next_status(count, data->total_cmd);
+		if (count2 == 0)
+			close(data->heredoc_fd);
+		if (count2 != 0)
+			close_pipe(data->pipe, count2 - 1);
+		data->pid_arr[count2] = ret;
+		count2++;
+		data->status = set_next_status(count2, data->total_cmd);
 	}
 	else
 	{
+		data->cur_process_index = count2;
+		printf("ret = %d\n", ret);
 		data->status = CHILD_EXECUTE;
-		data->cur_process_index = count;
+		printf("1data->cur_process_index = %d\n", data->cur_process_index);
 	}
 }

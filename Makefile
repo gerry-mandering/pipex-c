@@ -6,7 +6,7 @@
 #    By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/03 14:54:09 by minseok2          #+#    #+#              #
-#    Updated: 2022/12/08 12:52:30 by minseok2         ###   ########.fr        #
+#    Updated: 2022/12/10 16:58:54 by minseok2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,8 @@ RMFLAGS = -rf
 
 LIBFT_DIR = library/libft
 LIBFT_NAME = ft
-LIBDLL_DIR = library/doubly_linked_list
-LIBDLL_NAME = dll
+LIBGNL_DIR = library/get_next_line
+LIBGNL_NAME = gnl
 
 # mandatory
 HEADER_DIR = includes
@@ -42,6 +42,7 @@ BONUS_SRCS = pipex_bonus.c \
 			 utils_bonus.c \
 			 logic/parse_bonus.c \
 			 logic/parse_utils_bonus.c \
+			 logic/get_heredoc_input.c \
 			 logic/allocate_fd_bonus.c \
 			 logic/allocate_pid_arr_bonus.c \
 			 logic/set_pipe_bonus.c \
@@ -61,7 +62,7 @@ bonus:
 
 clean:
 	make fclean -C $(LIBFT_DIR)
-	make fclean -C $(LIBDLL_DIR)
+	make fclean -C $(LIBGNL_DIR)
 	$(RM) $(RMFLAGS) $(TOTAL_OBJS_DIR)
 
 fclean: clean
@@ -74,12 +75,13 @@ re:
 ifndef BONUS
 $(NAME): $(OBJS)
 	make all -C $(LIBFT_DIR)
-	$(CC) $(CFLAGS) -L$(LIBFT_DIR) -l$(LIBFT_NAME) -o $@ $^
+	make all -C $(LIBGNL_DIR)
+	$(CC) $(CFLAGS) -L$(LIBFT_DIR) -l$(LIBFT_NAME) -L$(LIBGNL_DIR) -l$(LIBGNL_NAME) -o $@ $^
 else
 $(NAME): $(BONUS_OBJS)
 	make all -C $(LIBFT_DIR)
-	make all -C $(LIBDLL_DIR)
-	$(CC) $(CFLAGS) -L$(LIBFT_DIR) -l$(LIBFT_NAME) -L$(LIBDLL_DIR) -l$(LIBDLL_NAME) -o $@ $^
+	make all -C $(LIBGNL_DIR)
+	$(CC) $(CFLAGS) -L$(LIBFT_DIR) -l$(LIBFT_NAME) -L$(LIBGNL_DIR) -l$(LIBGNL_NAME) -o $@ $^
 endif
 
 $(OBJS): $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c

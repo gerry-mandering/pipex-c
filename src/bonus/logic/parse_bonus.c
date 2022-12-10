@@ -6,7 +6,7 @@
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:32:40 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/08 12:34:58 by minseok2         ###   ########.fr       */
+/*   Updated: 2022/12/10 16:55:09 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static t_filename	parse_filename(t_argset *argset)
 	return (filename);
 }
 
+//통합
 static int	set_heredoc_flag(char *limiter)
 {
 	int	heredoc_flag;
@@ -54,5 +55,8 @@ void	parse(t_data *data)
 	data->total_cmd = count_total_cmd(&data->heredoc_flag, &data->argset);
 	data->cmd_arr = parse_cmd_arr(&data->total_cmd, &data->heredoc_flag, \
 									&data->argset);
-	data->status = ALLOCATE_PIPE;
+	if (data->heredoc_flag == ON)
+		data->status = GET_HEREDOC_INPUT;
+	else
+		data->status = ALLOCATE_PIPE;
 }
