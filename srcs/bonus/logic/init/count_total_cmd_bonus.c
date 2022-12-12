@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   allocate_pid_arr_bonus.c                           :+:      :+:    :+:   */
+/*   count_total_cmd_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 18:13:16 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/08 12:58:01 by minseok2         ###   ########.fr       */
+/*   Created: 2022/12/11 18:48:19 by minseok2          #+#    #+#             */
+/*   Updated: 2022/12/12 11:26:10 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/pipex_bonus.h"
+#include "../../../../includes/pipex_bonus.h"
 
-void	allocate_pid_arr(t_data *data)
+void	count_total_cmd(t_data *data, t_argset *argset)
 {
-	data->pid_arr = (pid_t *)ft_calloc(data->total_cmd, sizeof(pid_t));
-	data->status = SET_PIPE;
+	if (data->heredoc.flag == ON)
+		data->total_cmd = argset->argc - 4;
+	else
+		data->total_cmd = argset->argc - 3;
 }

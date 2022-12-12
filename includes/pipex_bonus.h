@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 13:41:18 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/10 15:22:58 by minseok2         ###   ########.fr       */
+/*   Created: 2022/12/11 14:24:32 by minseok2          #+#    #+#             */
+/*   Updated: 2022/12/12 17:23:43 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,35 +21,32 @@
 # include "../library/libft/includes/libft.h"
 # include "../library/get_next_line/includes/get_next_line.h"
 
-//define current status
-# define PARSE				0
-# define GET_HEREDOC_INPUT	1
-# define ALLOCATE_PIPE		2
-# define ALLOCATE_PID_ARR	3
-# define SET_PIPE			4
-# define DO_FORK			5
-# define PARENT_WAITING		6
-# define CHILD_EXECUTE		7
-# define EXIT				8
+//Status
+# define INIT			0
+# define SET_PIPE		1
+# define DO_FORK		2
+# define PARENT_WAITING	3
+# define CHILD_EXECUTE	4
+# define EXIT			5
 
-//define pipe side
-# define READ_END			0
-# define WRITE_END			1
+//Pipe End
+# define READ_END		0
+# define WRITE_END		1
 
-//define flag on, off
-# define OFF				0
-# define ON					1
+//Flag
+# define OFF			0
+# define ON				1
 
-//define error
+//Invalid Path
 # define INVALID_PATH		NULL
 
-//define exit status
+//Exit Status
 # define COMMAND_NOT_FOUND	127
 
 typedef struct s_argset
 {
-	int		ac;
-	char	**av;
+	int		argc;
+	char	**argv;
 	char	**envp;
 }	t_argset;
 
@@ -57,54 +54,75 @@ typedef struct s_filename
 {
 	char	*in;
 	char	*out;
-	char	*limiter;
 }	t_filename;
+
+typedef struct s_heredoc
+{
+	int		flag;
+	int		fd;
+	char	*limiter;
+	char	*filename;
+}	t_heredoc;
+
+typedef struct s_pipe
+{
+	int	*left;
+	int	*right;
+}	t_pipe;
 
 typedef struct s_cmd
 {
-	char	*cmd;
-	char	*cmd_path;
-	char	**cmd_vector;
-	char	*err_msg;
+	pid_t			pid;
+	char			*cmd;
+	char			*path;
+	char			**vector;
+	int				invalid_path_flag;
+	char			*err_msg;
+	struct s_pipe	pipe;
 }	t_cmd;
 
 typedef struct s_data
 {
-	int					status;
-	int					cur_process_index;
-	int					heredoc_flag;
-	int					heredoc_fd;
-	char				*heredoc_filename;
 	int					exit_status;
 	int					total_cmd;
-	int					**pipe;
-	pid_t				*pid_arr;
-	struct s_argset		argset;
+	int					cur_cmd;
+	int					**pipe_arr;
 	struct s_filename	filename;
+	struct s_heredoc	heredoc;
 	struct s_cmd		*cmd_arr;
 }	t_data;
 
-void	parse(t_data *data);
-t_cmd	*parse_cmd_arr(int *total_cmd, int *heredoc_flag, \
-						t_argset *argset);
-char	**get_path_vector(char **envp);
-char	*get_cmd_path(char *cmd, char **path_vector);
+//INIT
+void		init(int *status, t_data *data, t_argset *argset);
+void		parse_filename(t_data *data, t_argset *argset);
+void		set_heredoc_info(t_data *data, t_argset *argset);
+char		*make_random_name(void);
+char		*execute_mktemp(char *mktemp_path, char **envp);
+void		get_heredoc_input(t_data *data);
+void		count_total_cmd(t_data *data, t_argset *argset);
+void		allocate_pipe_arr(t_data *data);
+void		set_cmd_arr(t_data *data, t_argset *argset);
 
-void	get_heredoc_input(t_data *data);
+//INIT_UTILS
+const char	**get_path_vector(char **envp);
+void		free_path_vector(const char **path_vector);
+char		*get_cmd_path(char *cmd, const char **path_vector);
 
-void	allocate_pipe(t_data *data);
+//SET_PIPE
+void		set_pipe(int *status, t_data *data);
 
-void	allocate_pid_arr(t_data *data);
+//DO_FORK
+void		do_fork(int *status, t_data *data);
 
-void	set_pipe(t_data *data);
+//PARENT_WAITING
+void		parent_waiting(int *status, t_data *data);
 
-void	do_fork(t_data *data);
+//CHILD_EXECUTE
+void		child_execute(t_data *data, char **envp);
 
-void	parent_waiting(t_data *data);
-
-void	child_execute(t_data *data);
-
-//utils
-int		wexitstatus(int status);
+//UTILS
+int			ft_pipe(int fildes[2]);
+pid_t		ft_fork(void);
+int			wexitstatus(int status);
 
 #endif

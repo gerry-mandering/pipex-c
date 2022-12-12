@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_close.c                                         :+:      :+:    :+:   */
+/*   set_pipe_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 21:18:05 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/12 14:03:31 by minseok2         ###   ########.fr       */
+/*   Created: 2022/12/11 20:14:15 by minseok2          #+#    #+#             */
+/*   Updated: 2022/12/12 11:25:53 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "../../../includes/pipex_bonus.h"
 
-int	ft_close(int fildes)
+void	set_pipe(int *status, t_data *data)
 {
-	int	ret;
+	static int	count;
 
-	ret = close(fildes);
-	if (ret == -1)
-	{
-		perror("bash");
-		exit(EXIT_FAILURE);
-	}
-	return (ret);
+	ft_pipe(data->pipe_arr[count]);
+	count++;
+	*status = DO_FORK;
 }

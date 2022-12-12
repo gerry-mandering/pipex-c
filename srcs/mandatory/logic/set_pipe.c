@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_pipe_bonus.c                                   :+:      :+:    :+:   */
+/*   set_pipe.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 18:23:11 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/08 12:35:41 by minseok2         ###   ########.fr       */
+/*   Created: 2022/12/11 20:14:15 by minseok2          #+#    #+#             */
+/*   Updated: 2022/12/12 15:44:26 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/pipex_bonus.h"
+#include "../../../includes/pipex.h"
 
-void	set_pipe(t_data *data)
+void	set_pipe(int *status, t_data *data)
 {
 	static int	count;
-	int			ret;
 
-	ret = pipe(data->pipe[count]);
-	if (ret == -1)
-	{
-		perror("bash");
-		exit(EXIT_FAILURE);
-	}
+	ft_pipe(data->pipe_arr[count]);
 	count++;
-	data->status = DO_FORK;
+	*status = DO_FORK;
 }

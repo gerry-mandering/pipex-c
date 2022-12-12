@@ -5,29 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/07 09:30:07 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/10 17:11:38 by minseok2         ###   ########.fr       */
+/*   Created: 2022/12/11 20:27:20 by minseok2          #+#    #+#             */
+/*   Updated: 2022/12/12 09:54:32 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/pipex_bonus.h"
 
-void	parent_waiting(t_data *data)
+void	parent_waiting(int *status, t_data *data)
 {
-	const int	last_child = (data->total_cmd - 1);
-	int			process_index;
-	int			lst_status;
+	const pid_t	last_child_pid = data->cmd_arr[data->total_cmd - 1].pid;
+	int			wstatus;
+	int			i;
 
-	process_index = 0;
-	while (process_index < data->total_cmd)
+	i = 0;
+	while (i < data->total_cmd)
 	{
-		printf("waiting!!!! - %d\n", process_index);
-		if (process_index == last_child)
-			waitpid(data->pid_arr[process_index], &lst_status, 0);
+		if (data->cmd_arr[i].pid == last_child_pid)
+			waitpid(data->cmd_arr[i].pid, &wstatus, 0);
 		else
-			waitpid(data->pid_arr[process_index], NULL, 0);
-		process_index++;
+			waitpid(data->cmd_arr[i].pid, NULL, 0);
+		i++;
 	}
-	data->exit_status = wexitstatus(lst_status);
-	data->status = EXIT;
+	data->exit_status = wexitstatus(wstatus);
+	*status = EXIT;
 }

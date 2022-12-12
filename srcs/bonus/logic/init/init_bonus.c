@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_close.c                                         :+:      :+:    :+:   */
+/*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 21:18:05 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/12 14:03:31 by minseok2         ###   ########.fr       */
+/*   Created: 2022/12/11 15:31:18 by minseok2          #+#    #+#             */
+/*   Updated: 2022/12/12 13:54:51 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "../../../../includes/pipex_bonus.h"
 
-int	ft_close(int fildes)
+void	init(int *status, t_data *data, t_argset *argset)
 {
-	int	ret;
-
-	ret = close(fildes);
-	if (ret == -1)
+	if (argset->argc < 5)
 	{
-		perror("bash");
+		ft_putendl_fd("bash: Wrong arguments", STDERR_FILENO);
 		exit(EXIT_FAILURE);
 	}
-	return (ret);
+	parse_filename(data, argset);
+	set_heredoc_info(data, argset);
+	get_heredoc_input(data);
+	count_total_cmd(data, argset);
+	allocate_pipe_arr(data);
+	set_cmd_arr(data, argset);
+	*status = SET_PIPE;
 }

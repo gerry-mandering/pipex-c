@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_close.c                                         :+:      :+:    :+:   */
+/*   count_total_cmd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 21:18:05 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/12 14:03:31 by minseok2         ###   ########.fr       */
+/*   Created: 2022/12/11 18:48:19 by minseok2          #+#    #+#             */
+/*   Updated: 2022/12/12 15:45:14 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "../../../../includes/pipex.h"
 
-int	ft_close(int fildes)
+void	count_total_cmd(t_data *data, t_argset *argset)
 {
-	int	ret;
-
-	ret = close(fildes);
-	if (ret == -1)
-	{
-		perror("bash");
-		exit(EXIT_FAILURE);
-	}
-	return (ret);
+	if (data->heredoc.flag == ON)
+		data->total_cmd = argset->argc - 4;
+	else
+		data->total_cmd = argset->argc - 3;
 }
