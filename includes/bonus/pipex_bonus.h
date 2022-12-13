@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 14:24:32 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/12 17:24:00 by minseok2         ###   ########.fr       */
+/*   Updated: 2022/12/13 14:13:07 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <sys/wait.h>
-# include "../library/libft/includes/libft.h"
-# include "../library/get_next_line/includes/get_next_line.h"
+# include "../../library/libft/includes/libft.h"
+# include "../../library/get_next_line/includes/get_next_line.h"
 
 //Status
 # define INIT			0

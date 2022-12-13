@@ -6,11 +6,11 @@
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:48:19 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/12 11:26:10 by minseok2         ###   ########.fr       */
+/*   Updated: 2022/12/13 14:14:00 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../includes/pipex_bonus.h"
+#include "../../../../includes/bonus/pipex_bonus.h"
 
 void	count_total_cmd(t_data *data, t_argset *argset)
 {

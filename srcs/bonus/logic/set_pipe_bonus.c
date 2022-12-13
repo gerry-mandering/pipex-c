@@ -6,11 +6,11 @@
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:14:15 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/12 11:25:53 by minseok2         ###   ########.fr       */
+/*   Updated: 2022/12/13 14:13:50 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/pipex_bonus.h"
+#include "../../../includes/bonus/pipex_bonus.h"
 
 void	set_pipe(int *status, t_data *data)
 {

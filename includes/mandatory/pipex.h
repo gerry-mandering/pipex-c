@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_bonus.h                                      :+:      :+:    :+:   */
+/*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 14:24:32 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/12 17:23:43 by minseok2         ###   ########.fr       */
+/*   Updated: 2022/12/13 14:13:16 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_BONUS_H
-# define PIPEX_BONUS_H
+#ifndef PIPEX_H
+# define PIPEX_H
 
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <sys/wait.h>
-# include "../library/libft/includes/libft.h"
-# include "../library/get_next_line/includes/get_next_line.h"
+# include "../../library/libft/includes/libft.h"
 
 //Status
 # define INIT			0
@@ -56,14 +55,6 @@ typedef struct s_filename
 	char	*out;
 }	t_filename;
 
-typedef struct s_heredoc
-{
-	int		flag;
-	int		fd;
-	char	*limiter;
-	char	*filename;
-}	t_heredoc;
-
 typedef struct s_pipe
 {
 	int	*left;
@@ -88,17 +79,12 @@ typedef struct s_data
 	int					cur_cmd;
 	int					**pipe_arr;
 	struct s_filename	filename;
-	struct s_heredoc	heredoc;
 	struct s_cmd		*cmd_arr;
 }	t_data;
 
 //INIT
 void		init(int *status, t_data *data, t_argset *argset);
 void		parse_filename(t_data *data, t_argset *argset);
-void		set_heredoc_info(t_data *data, t_argset *argset);
-char		*make_random_name(void);
-char		*execute_mktemp(char *mktemp_path, char **envp);
-void		get_heredoc_input(t_data *data);
 void		count_total_cmd(t_data *data, t_argset *argset);
 void		allocate_pipe_arr(t_data *data);
 void		set_cmd_arr(t_data *data, t_argset *argset);

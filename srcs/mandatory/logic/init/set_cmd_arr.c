@@ -6,19 +6,11 @@
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:54:08 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/12 17:30:38 by minseok2         ###   ########.fr       */
+/*   Updated: 2022/12/13 14:16:06 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../includes/pipex.h"
-
-static int	set_offset(int heredoc_flag)
-{
-	if (heredoc_flag == ON)
-		return (3);
-	else
-		return (2);
-}
+#include "../../../../includes/mandatory/pipex.h"
 
 static char	*set_err_msg(char *cmd)
 {
@@ -62,7 +54,7 @@ static t_pipe	share_pipe(int i, int total_cmd, int **pipe_arr)
 void	set_cmd_arr(t_data *data, t_argset *argset)
 {
 	const char	**path_vector = (const char **)get_path_vector(argset->envp);
-	const int	offset = set_offset(data->heredoc.flag);
+	const int	offset = 2;
 	int			i;
 	t_cmd		*cmd_arr;
 

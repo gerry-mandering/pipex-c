@@ -6,11 +6,11 @@
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:50:25 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/12 15:45:09 by minseok2         ###   ########.fr       */
+/*   Updated: 2022/12/13 14:15:33 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../includes/pipex.h"
+#include "../../../../includes/mandatory/pipex.h"
 
 void	allocate_pipe_arr(t_data *data)
 {

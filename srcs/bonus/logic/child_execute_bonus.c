@@ -6,11 +6,11 @@
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:37:41 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/12 16:44:54 by minseok2         ###   ########.fr       */
+/*   Updated: 2022/12/13 14:13:38 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/pipex_bonus.h"
+#include "../../../includes/bonus/pipex_bonus.h"
 
 static void	execute(int read_end, int write_end, t_cmd *cmd, char **envp)
 {
@@ -33,7 +33,10 @@ static void	execute_first_cmd(t_data *data, t_cmd *cmd, char **envp)
 
 	ft_close(cmd->pipe.right[READ_END]);
 	if (data->heredoc.flag == ON)
+	{
 		read_end = data->heredoc.fd;
+		unlink(data->heredoc.filename);
+	}
 	else
 		read_end = open(data->filename.in, O_RDONLY);
 	if (read_end == -1)
@@ -41,7 +44,6 @@ static void	execute_first_cmd(t_data *data, t_cmd *cmd, char **envp)
 		perror("bash");
 		exit(EXIT_FAILURE);
 	}
-	unlink(data->heredoc.filename);
 	execute(read_end, cmd->pipe.right[WRITE_END], cmd, envp);
 }
 

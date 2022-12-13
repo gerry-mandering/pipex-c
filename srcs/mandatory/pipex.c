@@ -6,11 +6,11 @@
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 15:20:33 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/12 19:25:59 by minseok2         ###   ########.fr       */
+/*   Updated: 2022/12/13 14:15:00 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/pipex.h"
+#include "../../includes/mandatory/pipex.h"
 
 static t_argset	make_argset(int argc, char **argv, char **envp)
 {

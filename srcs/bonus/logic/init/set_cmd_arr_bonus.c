@@ -6,11 +6,11 @@
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:54:08 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/12 19:21:49 by minseok2         ###   ########.fr       */
+/*   Updated: 2022/12/13 14:14:21 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../includes/pipex_bonus.h"
+#include "../../../../includes/bonus/pipex_bonus.h"
 
 static int	set_offset(int heredoc_flag)
 {

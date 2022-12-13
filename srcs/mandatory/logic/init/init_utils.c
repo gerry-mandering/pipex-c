@@ -6,11 +6,11 @@
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 16:00:18 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/12 17:24:20 by minseok2         ###   ########.fr       */
+/*   Updated: 2022/12/13 14:15:57 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../includes/pipex.h"
+#include "../../../../includes/mandatory/pipex.h"
 
 const char	**get_path_vector(char **envp)
 {

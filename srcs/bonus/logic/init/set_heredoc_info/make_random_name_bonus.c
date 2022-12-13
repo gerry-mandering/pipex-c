@@ -6,11 +6,11 @@
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 17:41:57 by minseok2          #+#    #+#             */
-/*   Updated: 2022/12/12 14:36:09 by minseok2         ###   ########.fr       */
+/*   Updated: 2022/12/13 14:14:30 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../../includes/pipex_bonus.h"
+#include "../../../../../includes/bonus/pipex_bonus.h"
 
 static void	make_concat_str(char *concat_str, unsigned int *buffer)
 {
