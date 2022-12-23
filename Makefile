@@ -6,14 +6,14 @@
 #    By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/11 14:22:49 by minseok2          #+#    #+#              #
-#    Updated: 2022/12/13 14:35:17 by minseok2         ###   ########.fr        #
+#    Updated: 2022/12/24 00:07:24 by minseok2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -fsanitize=address -Wall -Wextra -Werror
 RM = rm
 RMFLAGS = -rf
 

@@ -6,7 +6,7 @@
 /*   By: minseok2 <minseok2@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 09:39:24 by minseok2          #+#    #+#             */
-/*   Updated: 2022/11/10 17:03:26 by minseok2         ###   ########.fr       */
+/*   Updated: 2022/12/24 00:06:53 by minseok2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,9 +114,7 @@ char	*str_join(t_glist *node, char *line, int *total_len)
 char	*add_nul(t_glist **list, t_glist *node, char *line, int total_len)
 {
 	char	*nul_added_line;
-	int		i;
 
-	i = 0;
 	nul_added_line = (char *)malloc(sizeof(char) * (total_len + 1));
 	if (nul_added_line == NULL)
 		return (free_all(list, node, line, FREE_WITH_LINE));
